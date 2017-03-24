@@ -7,6 +7,15 @@ var concat = require('gulp-concat');
 var deporder = require('gulp-deporder');
 var stripdebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var assets = require('postcss-assets');
+var autoprefixer = require('autoprefixer');
+var mqpacker = require('css-mqpacker');
+var cssnano = require('cssnano');
+var lost = require('lost');
+var autoprefixer = require('autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -51,5 +60,32 @@ gulp.task('js', function() {
   }
 
   return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
+
+});
+
+gulp.task('css', ['images'], function() {
+
+  var postCssOpts = [
+  assets({ loadPaths: ['images/'] }),
+  lost,
+  autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
+  mqpacker
+  ];
+
+  if (!devBuild) {
+    postCssOpts.push(cssnano);
+  }
+
+  return gulp.src(folder.src + 'scss/main.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'nested',
+      imagePath: 'images/',
+      precision: 3,
+      errLogToConsole: true
+    }))
+    .pipe(postcss(postCssOpts))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(folder.build + 'css'));
 
 });
