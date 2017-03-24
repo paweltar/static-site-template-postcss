@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var newer = require('gulp-newer');
 var imagemin = require('gulp-imagemin');
 var htmlclean = require('gulp-htmlclean');
+var panini = require('panini');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -16,10 +17,16 @@ gulp.task('images', function() {
 });
 
 gulp.task('html', ['images'], function() {
-    var out = folder.build + 'html/',
-        page = gulp.src(folder.src + 'html/**/*').pipe(newer(out));
+    var out = folder.build + 'html/';
 
-    // minify production code
+    var page = gulp.src(folder.src + 'html/pages/**/*.html').pipe(panini({
+        root: folder.src + 'html/pages/',
+        layouts: folder.src + 'html/layouts/',
+        partials: folder.src + 'html/partials/',
+        helpers: folder.src + 'html/helpers/',
+        data: folder.src + 'data/'
+    })).pipe(newer(out));
+
     if (!devBuild) {
         page = page.pipe(htmlclean());
     }
