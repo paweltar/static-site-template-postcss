@@ -16,6 +16,8 @@ var cssnano = require('cssnano');
 var lost = require('lost');
 var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
+var del = require('del');
+var runSequence = require('run-sequence');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -90,22 +92,19 @@ gulp.task('css', ['images'], function() {
 
 });
 
+gulp.task('clean:dist', function() {
+  return del.sync('build');
+});
+
 gulp.task('run', ['html', 'css', 'js']);
 
 gulp.task('watch', function() {
-
-  // image changes
   gulp.watch(folder.src + 'images/**/*', ['images']);
-
-  // html changes
   gulp.watch(folder.src + 'html/**/*', ['html']);
-
-  // javascript changes
   gulp.watch(folder.src + 'js/**/*', ['js']);
-
-  // css changes
   gulp.watch(folder.src + 'scss/**/*', ['css']);
-
 });
 
-gulp.task('default', ['run', 'watch']);
+gulp.task('default', function() {
+  runSequence('clean:dist', ['run', 'watch']);
+});
