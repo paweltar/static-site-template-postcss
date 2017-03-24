@@ -3,6 +3,10 @@ var newer = require('gulp-newer');
 var imagemin = require('gulp-imagemin');
 var htmlclean = require('gulp-htmlclean');
 var panini = require('panini');
+var concat = require('gulp-concat');
+var deporder = require('gulp-deporder');
+var stripdebug = require('gulp-strip-debug');
+var uglify = require('gulp-uglify');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -32,4 +36,20 @@ gulp.task('html', ['images'], function() {
     }
 
     return page.pipe(gulp.dest(out));
+});
+
+gulp.task('js', function() {
+
+  var jsbuild = gulp.src(folder.src + 'js/**/*')
+    .pipe(deporder())
+    .pipe(concat('main.js'));
+
+  if (!devBuild) {
+    jsbuild = jsbuild
+      .pipe(stripdebug())
+      .pipe(uglify());
+  }
+
+  return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
+
 });
