@@ -89,3 +89,23 @@ gulp.task('css', ['images'], function() {
     .pipe(gulp.dest(folder.build + 'css'));
 
 });
+
+gulp.task('run', ['html', 'css', 'js']);
+
+gulp.task('watch', function() {
+
+  // image changes
+  gulp.watch(folder.src + 'images/**/*', ['images']);
+
+  // html changes
+  gulp.watch(folder.src + 'html/**/*', ['html']);
+
+  // javascript changes
+  gulp.watch(folder.src + 'js/**/*', ['js']);
+
+  // css changes
+  gulp.watch(folder.src + 'scss/**/*', ['css']);
+
+});
+
+gulp.task('default', ['run', 'watch']);
