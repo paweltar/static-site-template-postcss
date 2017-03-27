@@ -1,5 +1,10 @@
+:root {
+  --mainColor: gray;
+}
+
 body {
   lost-center: 980px;
+  color: var(--mainColor);
 }
 
 .img-container {

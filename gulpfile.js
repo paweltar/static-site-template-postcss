@@ -19,6 +19,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
+var cssnext = require('cssnext');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -87,7 +88,8 @@ gulp.task('css', ['images'], function() {
     }),
     lost,
     autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
-    mqpacker
+    mqpacker,
+    cssnext()
   ];
 
   if (!devBuild) {
