@@ -1,28 +1,11 @@
-:root {
-  --mainColor: nippon-color(KUWAZOME);
+@import "normalize.css";
+
+.site-container {
+  background-color: nippon-color(SHIRONERI);
 }
 
-body {
-  lost-center: 980px;
-  color: var(--mainColor);
-}
-
-.img-container {
-  lost-column: 1/2;
-  background: resolve('documents-bg.jpg');
-  height: 200px;
-  background-size: cover;
-  margin-bottom: 50px;
-}
-
-.row {
-  lost-utility: clearfix;
-}
-
-.quarter {
-  lost-column: 1/4 0;
-}
-
-.half {
-  lost-column: 1/2 0;
+header {
+  height: 400px;
+  lost-align: center;
+  text-align: center;
 }

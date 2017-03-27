@@ -21,6 +21,8 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 var cssnext = require('cssnext');
 var nipponColor = require('postcss-nippon-color');
+var rucksack = require('gulp-rucksack');
+var atImport = require('postcss-import');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -87,7 +89,9 @@ gulp.task('css', ['images'], function() {
       loadPaths: ['images/'],
       basePath: 'src/'
     }),
+    atImport,
     nipponColor,
+    rucksack,
     lost,
     autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
     mqpacker,
