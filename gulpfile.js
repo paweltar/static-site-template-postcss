@@ -18,6 +18,7 @@ var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 var runSequence = require('run-sequence');
+var browserSync = require('browser-sync').create();
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -26,13 +27,19 @@ var folder = {
     build: 'build/'
 };
 
+gulp.task('serve', ['css'], function() {
+    browserSync.init({
+        server: "build/"
+    });
+});
+
 gulp.task('images', function() {
     var out = folder.build + 'images/';
     return gulp.src(folder.src + 'images/**/*').pipe(newer(out)).pipe(imagemin({optimizationLevel: 5})).pipe(gulp.dest(out));
 });
 
 gulp.task('html', ['images'], function() {
-    var out = folder.build + 'html/';
+    var out = folder.build + '/';
 
     var page = gulp.src(folder.src + 'html/pages/**/*.html').pipe(panini({
         root: folder.src + 'html/pages/',
@@ -40,7 +47,7 @@ gulp.task('html', ['images'], function() {
         partials: folder.src + 'html/partials/',
         helpers: folder.src + 'html/helpers/',
         data: folder.src + 'data/'
-    })).pipe(newer(out));
+    }));
 
     if (!devBuild) {
         page = page.pipe(htmlclean());
@@ -88,7 +95,8 @@ gulp.task('css', ['images'], function() {
     }))
     .pipe(postcss(postCssOpts))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(folder.build + 'css'));
+    .pipe(gulp.dest(folder.build + 'css'))
+    .pipe(browserSync.stream());
 
 });
 
@@ -100,11 +108,12 @@ gulp.task('run', ['html', 'css', 'js']);
 
 gulp.task('watch', function() {
   gulp.watch(folder.src + 'images/**/*', ['images']);
-  gulp.watch(folder.src + 'html/**/*', ['html']);
+  gulp.watch(folder.src + 'html/**/*').on('change', browserSync.reload);
+  gulp.watch(['./src/html/{pages,layouts,partials,helpers,data}/**/*'], ['html']);
   gulp.watch(folder.src + 'js/**/*', ['js']);
   gulp.watch(folder.src + 'scss/**/*', ['css']);
 });
 
 gulp.task('default', function() {
-  runSequence('clean:dist', ['run', 'watch']);
+  runSequence('clean:dist', ['run', 'watch', 'serve']);
 });
