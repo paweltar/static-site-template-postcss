@@ -81,7 +81,10 @@ gulp.task('js', function() {
 gulp.task('css', ['images'], function() {
 
   var postCssOptions = [
-    assets({ loadPaths: ['images/'] }),
+    assets({
+      loadPaths: ['images/'],
+      basePath: 'src/'
+    }),
     lost,
     autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
     mqpacker
