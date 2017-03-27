@@ -23,6 +23,7 @@ var cssnext = require('cssnext');
 var nipponColor = require('postcss-nippon-color');
 var rucksack = require('gulp-rucksack');
 var atImport = require('postcss-import');
+var fontMagician = require('postcss-font-magician');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -90,6 +91,7 @@ gulp.task('css', ['images'], function() {
       basePath: 'src/'
     }),
     atImport,
+    fontMagician,
     nipponColor,
     rucksack,
     lost,
