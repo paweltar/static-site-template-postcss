@@ -74,11 +74,11 @@ gulp.task('js', function() {
 
 gulp.task('css', ['images'], function() {
 
-  var postCssOpts = [
-  assets({ loadPaths: ['images/'] }),
-  lost,
-  autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
-  mqpacker
+  var postCssOptions = [
+    assets({ loadPaths: ['images/'] }),
+    lost,
+    autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
+    mqpacker
   ];
 
   if (!devBuild) {
@@ -93,7 +93,7 @@ gulp.task('css', ['images'], function() {
       precision: 3,
       errLogToConsole: true
     }))
-    .pipe(postcss(postCssOpts))
+    .pipe(postcss(postCssOptions))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(folder.build + 'css'))
     .pipe(browserSync.stream());
