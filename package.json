@@ -30,5 +30,8 @@
     "panini": "^1.4.0",
     "postcss-assets": "^4.1.0",
     "run-sequence": "^1.2.2"
+  },
+  "devDependencies": {
+    "postcss-nippon-color": "0.0.2"
   }
 }
