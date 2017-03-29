@@ -8,16 +8,13 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "postcss-font-magician": "^1.6.1",
-    "postcss-nippon-color": "0.0.2",
     "autoprefixer": "^6.7.7",
     "browser-sync": "^2.18.8",
+    "concise.css": "^4.1.2",
     "css-mqpacker": "^5.0.1",
     "cssnano": "^3.10.0",
-    "cssnext": "^1.8.4",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -34,7 +31,9 @@
     "normalize.css": "^6.0.0",
     "panini": "^1.4.0",
     "postcss-assets": "^4.1.0",
-    "postcss-import": "^9.1.0",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-font-magician": "^1.6.1",
+    "postcss-nippon-color": "0.0.2",
     "run-sequence": "^1.2.2"
   }
 }
