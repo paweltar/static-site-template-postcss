@@ -5,6 +5,6 @@
   background: linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
-    ), url(/images/hero-bg.jpeg);
+    ), inline('hero-bg.jpeg');
   background-size: cover;
 }

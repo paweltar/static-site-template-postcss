@@ -81,14 +81,16 @@ gulp.task('js', function() {
 
 });
 
-gulp.task('css', ['images'], function() {
+gulp.task('css', ['images', 'fonts'], function() {
 
   var postCssOptions = [
     assets({
-      loadPaths: ['images/'],
+      loadPaths: ['fonts/', 'images/'],
       basePath: 'src/'
     }),
-    fontMagician,
+    fontMagician({
+      hosted: [folder.src + 'fonts']
+    }),
     nipponColor,
     rucksack,
     mqpacker,
@@ -118,7 +120,12 @@ gulp.task('clean:dist', function() {
   return del.sync('build');
 });
 
-gulp.task('run', ['html', 'css', 'js']);
+gulp.task('fonts', function() {
+  return gulp.src(folder.src + 'fonts/**/*')
+  .pipe(gulp.dest(folder.build + 'fonts'))
+});
+
+gulp.task('run', ['html', 'css', 'js', 'fonts']);
 
 gulp.task('watch', function() {
   gulp.watch(folder.src + 'images/**/*', ['images']);
@@ -128,8 +135,13 @@ gulp.task('watch', function() {
   });
   gulp.watch(folder.src + 'js/**/*', ['js']);
   gulp.watch(folder.src + 'scss/**/*', ['css']);
+  gulp.watch(folder.src + 'fonts/**/*', ['fonts']);
 });
 
 gulp.task('default', function() {
   runSequence('clean:dist', ['run', 'watch', 'serve']);
+});
+
+gulp.task('build', function() {
+  runSequence('clean:dist', 'run');
 });
