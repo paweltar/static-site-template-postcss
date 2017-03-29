@@ -1,12 +1,16 @@
-@import "./node_modules/normalize.css/normalize.css";
-// @import "concise.css";
+@import "settings.scss";
+@import "./node_modules/uikit/dist/css/uikit.css";
+
+
+
+// @import "concise.scss";
 
 @custom-media --small-viewport (max-width: 600px);
 
 body {
   margin: 0;
   background-color: nippon-color(SHIRONERI);
-  font-family: "Crimson Text";
+  font-family: "Ariel";
 }
 
 header {
