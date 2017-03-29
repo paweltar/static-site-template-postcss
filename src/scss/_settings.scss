@@ -1,0 +1,17 @@
+// Custom media queries
+// Use as @media (--medium) { … }
+@custom-media --extra-small (width <= 480px);
+@custom-media --small (width >= 480px);
+@custom-media --medium (width >= 768px);
+@custom-media --large (width >= 960px);
+@custom-media --extra-large (width >= 1100px);
+@custom-media --only-small (480px < width <= 768px);
+@custom-media --only-medium (768px < width <= 980px);
+@custom-media --only-large (980px < width <= 1100px);
+
+// Font families
+$font-primary: "Helvetica", "Arial", sans-serif;
+$font-secondary: "Helvetica", "Arial", sans-serif;
+$font-mono: "Consolas", monospace;
+$font-print-primary: "Georgia", "Times New Roman", "Times", serif;
+$font-print-secondary: "Georgia", "Times New Roman", "Times", serif;
