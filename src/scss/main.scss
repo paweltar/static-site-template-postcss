@@ -1,13 +1,10 @@
 @import "settings.scss";
 @import "./node_modules/uikit/dist/css/uikit";
 
-@media (--extra-small) {
-  body {
-    background: nippon-color(SAKURA);
-    color: white;
-  }
-}
-
-h1 {
-  font-family: $font-primary;
+.section--hero {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), url(/images/hero-bg.jpeg);
+  background-size: cover;
 }
