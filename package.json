@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+  },
+  "devDependencies": {
+    "postcss-font-magician": "^1.6.1",
+    "postcss-nippon-color": "0.0.2",
     "autoprefixer": "^6.7.7",
     "browser-sync": "^2.18.8",
     "css-mqpacker": "^5.0.1",
@@ -27,15 +31,10 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "^2.1.2",
-    "lost": "^8.0.0",
     "normalize.css": "^6.0.0",
     "panini": "^1.4.0",
     "postcss-assets": "^4.1.0",
     "postcss-import": "^9.1.0",
     "run-sequence": "^1.2.2"
-  },
-  "devDependencies": {
-    "postcss-font-magician": "^1.6.1",
-    "postcss-nippon-color": "0.0.2"
   }
 }

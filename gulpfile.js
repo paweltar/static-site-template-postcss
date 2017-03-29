@@ -13,7 +13,6 @@ var assets = require('postcss-assets');
 var autoprefixer = require('autoprefixer');
 var mqpacker = require('css-mqpacker');
 var cssnano = require('cssnano');
-var lost = require('lost');
 var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
@@ -94,7 +93,6 @@ gulp.task('css', ['images'], function() {
     fontMagician,
     nipponColor,
     rucksack,
-    lost,
     autoprefixer({ browsers: ['last 2 versions', '> 2%'] }),
     mqpacker,
     cssnext()
