@@ -30,8 +30,8 @@ Download dependencies
 
 Build project and start watching for changes
 
-    gulp
+    npm start
 
 Create /build folder for the production website
 
-    gulp build
+    npm run build
