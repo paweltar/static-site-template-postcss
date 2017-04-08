@@ -12,8 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "concise-ui": "^0.2.1",
-    "concise-utils": "^1.0.0",
-    "uikit": "^3.0.0-beta.18"
+    "concise-utils": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
