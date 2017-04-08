@@ -107,7 +107,8 @@ gulp.task('css', ['images', 'fonts'], function() {
       outputStyle: 'nested',
       imagePath: 'images/',
       precision: 3,
-      errLogToConsole: true
+      errLogToConsole: true,
+      includePaths: './node_modules/uikit/src/scss/'
     }))
     .pipe(postcss(postCssOptions))
     .pipe(sourcemaps.write('./'))
