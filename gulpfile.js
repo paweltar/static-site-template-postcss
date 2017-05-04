@@ -22,6 +22,7 @@ var cssnext = require('postcss-cssnext');
 var nipponColor = require('postcss-nippon-color');
 var rucksack = require('gulp-rucksack');
 var fontMagician = require('postcss-font-magician');
+var webpack = require('gulp-webpack');
 
 var devBuild = (process.env.NODE_ENV !== 'production');
 
@@ -67,17 +68,21 @@ gulp.task('panini:reset', function(done) {
 
 gulp.task('js', function() {
 
-  var jsbuild = gulp.src(folder.src + 'js/**/*')
-    .pipe(deporder())
-    .pipe(concat('main.js'));
+  // var jsbuild = gulp.src(folder.src + 'js/**/*')
+  //   .pipe(deporder())
+  //   .pipe(concat('main.js'));
+  //
+  // if (!devBuild) {
+  //   jsbuild = jsbuild
+  //     .pipe(stripdebug())
+  //     .pipe(uglify());
+  // }
+  //
+  // return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
 
-  if (!devBuild) {
-    jsbuild = jsbuild
-      .pipe(stripdebug())
-      .pipe(uglify());
-  }
-
-  return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
+  return gulp.src('./src/js/app.js')
+  .pipe(webpack( require('./webpack.config.js') ))
+  .pipe(gulp.dest(folder.build + 'js'));
 
 });
 
