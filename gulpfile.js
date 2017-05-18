@@ -63,19 +63,6 @@ gulp.task('panini:reset', function(done) {
 });
 
 gulp.task('js', function() {
-
-  // var jsbuild = gulp.src(folder.src + 'js/**/*')
-  //   .pipe(deporder())
-  //   .pipe(concat('main.js'));
-  //
-  // if (!devBuild) {
-  //   jsbuild = jsbuild
-  //     .pipe(stripdebug())
-  //     .pipe(uglify());
-  // }
-  //
-  // return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
-
   return gulp.src('./src/js/app.js')
   .pipe(webpack( require('./webpack.config.js') ))
   .pipe(gulp.dest(folder.build + 'js'));
@@ -126,7 +113,12 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest(folder.build + 'fonts'))
 });
 
-gulp.task('run', ['html', 'css', 'js', 'fonts']);
+gulp.task('static', function() {
+  return gulp.src(folder.src + 'static/**/*')
+  .pipe(gulp.dest(folder.build))
+});
+
+gulp.task('run', ['html', 'css', 'js', 'fonts', 'static']);
 
 gulp.task('watch', function() {
   gulp.watch(folder.src + 'images/**/*', ['images']);
