@@ -1,6 +1,7 @@
 @import "imports.scss";
 
 .section--hero {
+  // More info about this strange inline function here https://github.com/borodean/postcss-assets
   background: inline('pexels-photo-336657.jpeg');
   background-size: cover;
 }

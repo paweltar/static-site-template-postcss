@@ -1,4 +1,5 @@
 // Custom media queries
+// You can read more here http://cssnext.io/features/#custom-media-queries
 // Use as @media (--medium) { … }
 @custom-media --extra-small (width <= 640px);
 @custom-media --small (width >= 640px);
